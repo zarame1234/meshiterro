@@ -1,8 +1,9 @@
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current.user %>
+  <% if @user == current_user %>
    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
 </div>
 
 <% @postimages.each do |postimage| %>
@@ -14,6 +15,6 @@
     <p>ショップ名：<%= postimage.shop_name %></p>
     <p>説明：<%= postimage.caption %></p>
     <p>ユーザーネーム：<%= postimage.user.name %></p>
-        <p><%= link_to "#{postimage.post_comments.count} コメント", post_image_path(post_image.id) %></p>
+    <p><%= link_to "#{postimage.post_comments.count} コメント", postimage_path(postimage.id) %></p>
   </div>
   <% end %>
